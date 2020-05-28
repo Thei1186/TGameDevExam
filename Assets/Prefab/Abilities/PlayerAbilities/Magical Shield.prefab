@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7345349359016554993}
   m_Layer: 0
   m_Name: Magical Shield
-  m_TagString: Untagged
+  m_TagString: Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,7 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canAffectProjectiles: 1
   canAffectEnemies: 0
-  abilityStength: 50
+  abilityStength: 30
   abilityDuration: 5
   abilitySpeed: 0
   abilityCooldown: 20

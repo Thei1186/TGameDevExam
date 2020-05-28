@@ -21,24 +21,28 @@ public class BossRun : StateMachineBehaviour
 // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
 override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        boss.LookAtPlayer();
-        Vector2 target = new Vector2(player.position.x, rb.position.y);
+        
+       bool isDead = animator.GetBool("IsDead");
+        if (!isDead)
+        {
+            boss.LookAtPlayer();
+            Vector2 target = new Vector2(player.position.x, rb.position.y);
 
-        float distance = Vector2.Distance(player.position, rb.position);
-        if (distance > boss.bossType.minDistance - 1.5f)
-        {
-            Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
-            rb.MovePosition(newPos);
+            float distance = Vector2.Distance(player.position, rb.position);
+            if (distance > boss.bossType.minDistance - 1.5f)
+            {
+                Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
+                rb.MovePosition(newPos);
+            }
+
+            attackTimer += Time.deltaTime;
+            if (distance <= attackRange && attackTimer >= boss.bossType.attackSpeed)
+            {
+                animator.SetTrigger("Attack");
+                attackTimer = 0;
+            }
         }
-        
-       
-        
-        attackTimer += Time.deltaTime;
-        if (distance <= attackRange && attackTimer >= boss.bossType.attackSpeed)
-        {
-            animator.SetTrigger("Attack");
-            attackTimer = 0;
-        }
+    
     }
 
     //OnStateExit is called when a transition ends and the state machine finishes evaluating this state

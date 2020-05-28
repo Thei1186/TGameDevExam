@@ -11,11 +11,13 @@ public class Boss : MonoBehaviour
     public Transform attackPoint;
     public LayerMask attackMask;
     public BossHealthBar healthBar;
+    public AudioSource attackSound;
 
     private int damage;
     private int enragedDamage;
     private int currentLife;
     private Animator animator;
+    private bool enraged = false;
 
     private void Start()
     {
@@ -65,19 +67,37 @@ public class Boss : MonoBehaviour
 
     public void TakeDamage(int attackDamage)
     {
-        currentLife -= attackDamage;
-        animator.SetTrigger("GetHurt");
-        healthBar.SetHealth(currentLife);
-
-        if (currentLife <= 0)
+        if (!animator.GetBool("IsDead"))
         {
-            Die();
+            currentLife -= attackDamage;
+            animator.SetTrigger("GetHurt");
+            healthBar.SetHealth(currentLife);
+            if (currentLife <= bossType.startHealth * 0.45f && enraged == false)
+            {
+                enraged = true;
+                Enrage();
+            }
+
+            if (currentLife <= 0)
+            {
+                Die();
+            }
         }
+       
+    }
+
+    private void Enrage()
+    {
+        currentLife *= 2;
+        healthBar.SetHealth(currentLife);
+        bossType.attackSpeed = 3;
+        animator.SetBool("isEnraged", true);
     }
 
     private void Die()
     {
-        animator.SetBool("isDead", true);
+        animator.SetTrigger("Die");
+        animator.SetBool("IsDead", true);
         StartCoroutine(StartVictoryAfterDelay(5));
     }
 
@@ -90,5 +110,10 @@ public class Boss : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
         GameManager.GetInstance().setVictory();
+    }
+
+    public void PlayAttackSound()
+    {
+        attackSound.Play();
     }
 }

@@ -64,4 +64,18 @@ public class PlayerCombat : MonoBehaviour
         }
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Shield"))
+        {
+            float heal = collision.gameObject.GetComponent<AbilityManager>().abilityStength;
+            gameObject.GetComponentInParent<PlayerHealth>().GetHealed(heal);
+        }
+    }
+
+    public void PlayAttackSound()
+    {
+        gameObject.GetComponent<AudioSource>().Play();
+    }
 }

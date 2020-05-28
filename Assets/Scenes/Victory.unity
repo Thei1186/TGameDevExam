@@ -565,7 +565,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Victory!
 
-    All Enemies Have been annihilated'
+    Congratulations you Have defeated the boss.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -593,8 +593,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 72
-  m_fontSizeBase: 72
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -634,10 +634,10 @@ MonoBehaviour:
   m_margin: {x: -200.43298, y: 0, z: -259.3838, w: -47.160706}
   m_textInfo:
     textComponent: {fileID: 841744077}
-    characterCount: 42
+    characterCount: 52
     spriteCount: 0
-    spaceCount: 5
-    wordCount: 6
+    spaceCount: 6
+    wordCount: 7
     linkCount: 0
     lineCount: 3
     pageCount: 1
@@ -1298,8 +1298,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: cbca7470c4fabc84a9eea91fef0b120e, type: 3}
-        m_MethodName: 
+      - m_Target: {fileID: 929767654}
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -9,6 +9,7 @@ TagManager:
   - PlatformGround
   - Obstacle
   - Projectile
+  - Shield
   layers:
   - Default
   - TransparentFX

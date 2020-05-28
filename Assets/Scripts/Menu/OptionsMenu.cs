@@ -30,6 +30,7 @@ public class OptionsMenu : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
+       
         am.SetFloat("Volume", AudioListener.volume);
        
     }
